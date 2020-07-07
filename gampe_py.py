@@ -8,8 +8,12 @@ from pygame import mixer
 pygame.init()
 
 # create the screen
-screen = pygame.display.set_mode((800, 600))
+screen = pygame.display.set_mode((800, 600))            #give width and height of the window (x,y)
 
+#infinfite loop screen hangs
+#while True:
+  #pass
+    
 # Background
 background = pygame.image.load('background.png')
 
@@ -31,14 +35,14 @@ playerX_change = 0
 # Enemy
 enemyImg = []
 enemyX = []
-enemyY = []
+enemyY = []                                                             #enemy respawning in different places
 enemyX_change = []
 enemyY_change = []
 num_of_enemies = 6
 
 for i in range(num_of_enemies):
     enemyImg.append(pygame.image.load('enemy.png'))
-    enemyX.append(random.randint(0, 736))
+    enemyX.append(random.randint(0, 736))                               #draw
     enemyY.append(random.randint(50, 150))
     enemyX_change.append(4)
     enemyY_change.append(40)
@@ -98,15 +102,18 @@ def isCollision(enemyX, enemyY, bulletX, bulletY):
     else:
         return False
 
+#opening closing buttons on windows are events in Python
+#game loop for moving closing jjumping all are events and come in this loop
 
 # Game Loop
 running = True
 while running:
 
     # RGB = Red, Green, Blue
+      #rgb set values for colour on the screen
     screen.fill((0, 0, 0))
     # Background Image
-    screen.blit(background, (0, 0))
+    screen.blit(background, (0, 0))          #the enemy moves slowly because on every iteration of the while loop the heavy background image is loaded
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -180,4 +187,4 @@ while running:
 
     player(playerX, playerY)
     show_score(textX, testY)
-    pygame.display.update()
+    pygame.display.update()                  #permanent line along with init line
